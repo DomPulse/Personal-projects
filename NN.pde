@@ -1,3 +1,4 @@
+//this is a simple feed forward Neural network created forprocessing by Dominic Polsinell in in 2017
 int InNum = 5;
 int HidNum = 15;
 int OutNum = 5;
