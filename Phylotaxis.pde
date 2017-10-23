@@ -12,7 +12,7 @@ void setup(){
 }
 void draw(){
   translate(width/2, height/2);
-  p = n*a;
+  p = radians(n*a);
   r = 5*sqrt(n);
   c = map(n, 0, 600, 0, 255);
   if(n < 600)
