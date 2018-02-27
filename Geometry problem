@@ -1,0 +1,56 @@
+import random
+
+odds = [1,3,7,9]
+evens = [2,4,6,8]
+solution = []
+c = 0
+
+def PickDig(odds, evens, solution):
+    solution = []
+    for n in range(9):
+        if n == 4:
+            solution.append(5)
+        elif n%2 == 0 and n != 4:
+            solution.append(PickOdds(odds,solution))
+        elif n%2 != 0 and n != 4:
+            solution.append(PickEven(evens, solution))
+
+    solution.append(0)
+    return solution
+
+def PickEven(evens, solution):
+    x = random.choice(evens)
+    if x not in solution:
+        return x
+    else:
+        return(PickEven(evens, solution))
+
+def PickOdds(odds,solution):
+    x = (random.choice(odds))
+    if x not in solution:
+        return x
+    else:
+        return(PickOdds(odds, solution))
+
+
+answer = PickDig(odds, evens, solution)
+def check(answer, c):
+    b = 0
+    for a in range(c+1):
+        b *= 10
+        b += answer[a]
+    if c == 9:
+        print(answer)
+        print ("success")
+        return True
+    if b % (c+1) == 0 and c < 9:
+        c+=1
+        check(answer, c)
+
+
+
+
+while check(answer, c) != True:
+    PickDig(odds, evens, solution)
+    answer = PickDig(odds, evens, solution)
+    check(answer, c)
